@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework import permissions, response, status, serializers
 from users import validators
 from . import models, serializers as school_ops_serializers, validators as school_ops_validators, models_api
@@ -8,8 +7,6 @@ from . import custom_pagination
 
 class GroupsAPI(APIView):
     permission_classes = [permissions.AllowAny]
-    # authentication_classes = [SessionAuthentication, BasicAuthentication]
-    # permission_classes = (IsAuthenticated)
     def post(self, request):
         validators.validate_content_type(request)
         validate_group_name = school_ops_validators.ValidateGroup()
